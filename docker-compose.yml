@@ -1,0 +1,20 @@
+version: "2.5"
+services:
+  crop_prediction:
+    image: jupyter/tensorflow-notebook
+    runtime: nvidia
+    ports:
+      - 8888:8888
+    container_name: crop_prediction_container
+    user: root
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: all
+      JUPYTER_ENABLE_LAB: 1
+      NB_USER: dylan
+      NB_GID: 1000
+      CHOWN_HOME: "yes"
+      CHOWN_HOME_OPTS: "-R"
+    working_dir: /home/${USER}/work
+    volumes:
+      - /home/modules/crop_yield_prediction/work:/home/${USER}/work
